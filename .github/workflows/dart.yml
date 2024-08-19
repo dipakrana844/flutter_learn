@@ -6,10 +6,17 @@
 name: Dart
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
+      - master
+      - flutter_hive_example
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - flutter_hive_example
 
 jobs:
   build:
@@ -29,6 +36,7 @@ jobs:
         with:
           flutter-version: "3.0.0"
           channel: 'stable'
+      - run: flutter build apk --release --split-per-abi
       - name: Get dependencies
         run: flutter pub get
 
