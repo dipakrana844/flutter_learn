@@ -17,15 +17,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          distribution: 'zulu'
+          java-version: "12.x"
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.0.0"
+          channel: 'stable'
+      - name: Get dependencies
+        run: flutter pub get
 
-      - name: Install dependencies
-        run: dart pub get
+      - name: Start release build
+        run: flutter build appbundle
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
