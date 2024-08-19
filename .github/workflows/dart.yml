@@ -36,6 +36,7 @@ jobs:
         with:
           flutter-version: "3.0.0"
           channel: 'stable'
+          architecture: x64
       - run: flutter build apk --split-per-abi
       - name: Get dependencies
         run: flutter pub get
